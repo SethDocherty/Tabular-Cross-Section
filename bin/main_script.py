@@ -1,5 +1,11 @@
-import os, csv, sys, operator, xlrd, math
+import os, csv, sys, operator, math
 from datetime import datetime
+
+try:
+    import xlrd
+except:
+    print "xlrd library must be installed to run this script"
+    print "This library can eaisly be installed through pip by running the following command: pip install xlrd"
 
 #.....................................................
 # SETTING UP THE DIRECTORY'S
@@ -19,15 +25,16 @@ COLS = [
     'End Depth',
     'Parameter Name',
     'Report Result',
-    'Lab Qualifier',
-    'Validation Qualifier',
     'Leached',
     'Detected',
     'Filtered',
     'Ground Elevation',
-    'Sample Purpose',
     'Location Group Name'
 ]
+	# Fields that are not needed
+    #'Lab Qualifier',
+	#'Validation Qualifier',
+	#'Sample Purpose',
 
 #.....................................................
 # Definitions
@@ -92,7 +99,7 @@ def get_filters() :
 
     for key1,item1 in f.items():
         if item1 == -1:
-            print "Found no matches for " + key1
+            print "Found no matches for {}".format(key1)
             sys.exit()
 
     csvfile.close()
@@ -115,7 +122,7 @@ def add_data_elevation( listlist, data, filter ):
     depth = start_el
     #This case solves for results where the start depth is larger than the max elevation but the end depth is lower.  Need to make the start depth elevation the same as the max elevation
     while depth > filter['Max Elevation']:
-        print depth, "Start Elevation is larger than the Max Elevation"
+        print "{} | Start Elevation is larger than the Max Elevation".format(depth)
         depth -= filter['Interval Range']
     i = int((filter['Max Elevation'] - end_el) / filter['Interval Range'] ) + 1
     while depth >= end_el and depth >= filter['Min Elevation']:
@@ -242,7 +249,7 @@ def header_check(main_header,file_header):
         if header not in file_header:
             missing_header.append(header)
     if len(missing_header) != 0:
-        print "The following fields are missing from the input file: ", missing_header
+        print "The following fields are missing from the input file: {}".format(missing_header)
         sys.exit()
     else:
         pass
@@ -371,4 +378,5 @@ for grp in output:
             for row in output[grp][param]:
                 writer.writerow(row)
 
+print "Finished processing the data.  You can find the final output located here: {}".format(OUTPUT_DIR)
 print "......................................................................End Runtime: ", datetime.now()-startTime
