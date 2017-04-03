@@ -3,9 +3,9 @@
 ![header-picture](./images/header-picture.png)
 
 #### Table of Contents:
- - [Description]()
- - [Running The Script]()
- - [Dependencies]()
+ - [Description](https://github.com/SethDocherty/Tabular-Cross-Section#description)
+ - [Running The Script](https://github.com/SethDocherty/Tabular-Cross-Section#running-the-script)
+ - [Dependencies](https://github.com/SethDocherty/Tabular-Cross-Section#dependencies)
 
 ## Description:
 
