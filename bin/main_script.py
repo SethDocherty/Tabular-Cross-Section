@@ -29,12 +29,12 @@ COLS = [
     'Detected',
     'Filtered',
     'Ground Elevation',
-    'Location Group Name'
+    'Location Group Name',
+    'Lab Qualifier',
+    'Validation Qualifier'
 ]
 	# Fields that are not needed
-    #'Lab Qualifier',
-	#'Validation Qualifier',
-	#'Sample Purpose',
+	#'Sample Purpose'
 
 #.....................................................
 # Definitions
